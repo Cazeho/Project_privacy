@@ -62,7 +62,7 @@
 				<div class="container">
 					<div class="current">Question 1/20</div>	
 					<p>
-						1.Pensez vous être espionné par vos appareils intelligents à la maison?
+						<label for="q1">"1.Pensez vous être espionné par vos appareils intelligents à la maison?">
 					</p>
 						<ul>
 							<li><input name="q1" type="radio" value="1">Oui<li>
