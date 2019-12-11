@@ -41,7 +41,7 @@
 						alert("Opération réussie");
 					}
 					else{
-						alert("Vous avez oubliez des questions");
+						alert("Vous avez oublié des questions");
 						return false;
 					}
 					
