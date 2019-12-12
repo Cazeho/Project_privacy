@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="../Projet/CSS/style.css" />
 		<title>QCM "Privacy"</title>
 	</head>
@@ -25,5 +25,3 @@
 		</footer>
 	</body>
 </html>	
-
-Le programme est capable d'identifier les personnes faisant face à la caméra, et d'afficher des messages ou informations personnalisées en fonction des utilisateurs reconnus. 
