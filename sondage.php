@@ -104,7 +104,6 @@ if($connexion === false){
 				  $db_msg = "Erreur lors de la tentative d'enregistrement de contact.";
 				  $type_db_msg = "error";
 				}
-				echo 'Nom : ' . $q1 . ' Age : ' . $q2 . ' Adresse : ' . $q4;
 				
 			}			
 			?>
