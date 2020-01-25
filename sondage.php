@@ -40,6 +40,8 @@ CREATE TABLE `question` (
   `q20` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=ucs2;
 
+ALTER TABLE `question`
+  ADD PRIMARY KEY (`id`);
 
 
 --> 
