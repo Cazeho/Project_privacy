@@ -2,6 +2,7 @@ body{
 	font-family:arial;
 	font-size:15px;
 	line-height:1.6;
+	background:#181818;
 }
 
 li{
@@ -13,21 +14,23 @@ a{
 }	
 
 .container{
-	width:60%;
+	width:70%;
 	margin:0 auto;
 	overflow:auto;
-	background:#f4f4f4;
+	background:#ddf4ef;
+	border-radius: 10px;
+	
 }	
 
 header{
-	border-bottom:3px #f4f4f4 solid;
+	border-bottom:0px #f4f4f4 solid;
 }	
 main{
 	padding-bottom:20px;
 }
 
 footer{
-	border-top:3px #f4f4f4 solid;
+	border-top:0px #f4f4f4 solid;
 	text-align:center;
 	padding-top:5px;
 }
@@ -39,30 +42,37 @@ a.start{
 	border:1px dotted #ccc;
 	padding:6px 13px;
 	
+	
 }
 .current{
 	padding:10px;
-	background:#e2e2e2;
+	background:#98a2bb;
 	border:#ccc dotted 1px;
-	margin:20px 0 10px 0;
+	#margin:20px 0 10px 0;
+	border-radius: 10px;
 }
 a.back-to-top {
 	display:inline block;
-	width:60px;
-	height:60px;
+	width:90px;
+	height:90px;
 	position:fixed;
-	bottom:40px;
-	right:40px;
+	bottom:70px;
+	right:130px;
 	background:url("arrow2.png") no-repeat center 35%;
 	text-indent:-9999px;
 	border-radius:30px;
 }	
 a:hover.back-to-top{
 	background-color:#fff;
+}
+.g{
+	width:150px;
+	height:40px;
 }	
 .box {
-	background-image: url(galaxy.jpg);
 	background-size: cover;
 	margin: 200 px 800px;
 	padding: 100px;
+	background: #5a7cd1;
+	border-radius: 10px;
 }	
