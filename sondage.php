@@ -14,6 +14,35 @@ if($connexion === false){
 }
 ?>
 <!DOCTYPE HTML>
+<!-- Base de donnée
+
+CREATE TABLE `question` (
+  `id` int(200) NOT NULL,
+  `q1` varchar(200) NOT NULL,
+  `q2` varchar(200) NOT NULL,
+  `q3` varchar(200) NOT NULL,
+  `q4` varchar(200) NOT NULL,
+  `q5` varchar(200) NOT NULL,
+  `q6` varchar(200) NOT NULL,
+  `q7` varchar(200) NOT NULL,
+  `q8` varchar(200) NOT NULL,
+  `q9` varchar(200) NOT NULL,
+  `q10` varchar(200) NOT NULL,
+  `q11` varchar(200) NOT NULL,
+  `q12` varchar(200) NOT NULL,
+  `q13` varchar(200) NOT NULL,
+  `q14` varchar(200) NOT NULL,
+  `q15` varchar(200) NOT NULL,
+  `q16` varchar(200) NOT NULL,
+  `q17` varchar(200) NOT NULL,
+  `q18` varchar(200) NOT NULL,
+  `q19` varchar(200) NOT NULL,
+  `q20` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=ucs2;
+
+
+
+--> 
 <html>
 	<head>
 		<meta charset="utf-8" />
