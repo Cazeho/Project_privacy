@@ -1,11 +1,30 @@
-<?php include 'database.php'; ?>
+<?php session_start();
+require('data.php');
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'mr708660');
+ 
+// Connexion à la base de données MySQL 
+$connexion = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+ 
+// Vérifier la connexion
+if($connexion === false){
+    die("ERREUR : Impossible de se connecter. " . mysqli_connect_error());
+}
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link href="./css/bootstrap.min.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="../privacy/CSS/style.css" />
-		<title>QCM "Privacy"</title>
+		<title>Sondage "Privacy"</title>
 		<script>
 			function validate(){
 					var valid = false;
@@ -51,19 +70,58 @@
 		</script>
 	</head>
 	<body>
+		<div>
+			<?php
+			if(isset($_POST['submit'])){
+				
+				$q1 = $_POST['q1'];
+				$q2 = $_POST['q2'];
+				$q3 = $_POST['q3'];
+				$q4 = $_POST['q4'];
+				$q5 = $_POST['q5'];
+				$q6 = $_POST['q6'];
+				$q7 = $_POST['q7'];
+				$q8 = $_POST['q8'];
+				$q9 = $_POST['q9'];
+				$q10 = $_POST['q10'];
+				$q11 = $_POST['q11'];
+				$q12 = $_POST['q12'];
+				$q13 = $_POST['q13'];
+				$q14 = $_POST['q14'];
+				$q15 = $_POST['q15'];
+				$q16 = $_POST['q16'];
+				$q17 = $_POST['q17'];
+				$q18 = $_POST['q18'];
+				$q19 = $_POST['q19'];
+				$q20 = $_POST['q20'];
+				
+				
+				$result = mysqli_query($connexion, "INSERT INTO question(id, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20 ) VALUES ('','" . $q1. "', '" . $q2. "','" . $q3. "','" . $q4. "','" . $q5. "','" . $q6. "','" . $q7. "','" . $q8. "','" . $q9. "','" . $q10. "','" . $q11. "','" . $q12. "','" . $q13. "','" . $q14. "','" . $q15. "','" . $q16. "','" . $q17. "','" . $q18. "','" . $q19. "','" . $q20. "')");
+				if($result){
+				  $db_msg = "Vos informations de contact sont enregistrées avec succés.";
+				  $type_db_msg = "success";
+				}else{
+				  $db_msg = "Erreur lors de la tentative d'enregistrement de contact.";
+				  $type_db_msg = "error";
+				}
+				echo 'Nom : ' . $q1 . ' Age : ' . $q2 . ' Adresse : ' . $q4;
+				
+			}			
+			?>
+		</div>
 		<header>
 			<div class="container">
-				<h1>QCM "Privacy"</h1>
+				<center><h1>Sondage "Privacy"</h1><center/>
 			</div>	
 		</header>
 		<a href="#" class="back-to-top">Back-to top</a>
 		<section>
 			<div class="box">
-			<form name="myform" method="post" id="myform" action="proc.php" onsubmit="return validate()">
+			<form name="myform" method="post" id="" action="proc.php" onsubmit="return validate()">
 				<div class="container">
 					<div class="current">Question 1/20</div>	
 					<p>
-						 <label for="q1">1.Pensez vous être espionné par vos appareils intelligents à la maison? </label>
+						 <label for="q1">	Pensez vous être espionné par vos appareils intelligents à la maison? </label>
 					</p>
 						<ul>
 							
@@ -74,7 +132,7 @@
 							<div class="container">
 					<div class="current">Question 2/20</div>	
 					<p>
-						<label for="q2">2.En quelle entreprise des GAFAM avez vous le moins confiance?</br> En d'autre termes, laquelle est le plus suceptible de vous espionner</label>
+						<label for="q2">	En quelle entreprise des GAFAM avez vous le moins confiance? En d'autre termes, laquelle est le plus suceptible de vous espionner</label>
 					</p>
 				
 						<ul>
@@ -89,7 +147,7 @@
 							<div class="container">
 					<div class="current">Question 3/20</div>	
 					<p class="question">
-						 <label for="q3">3.Combien d'appareils intelligents (téléphone, four,frigidaire,caméra,</br> remote-store,répéteur,lave linge) estimez vous avoir dans la maison?</label>
+						 <label for="q3">	Combien d'appareils intelligents (téléphone, four,frigidaire,caméra, remote-store,répéteur,lave linge) estimez vous avoir dans la maison?</label>
 					</p>
 					
 						<ul class="choix">
@@ -104,7 +162,7 @@
 							<div class="container">
 					<div class="current">Question 4/20</div>	
 					<p class="question">
-						 <label for="q4">4.Quels moteurs de recherche utilisez vous à la maison? Plusieurs choix possibles</label>
+						 <label for="q4">	Quels moteurs de recherche utilisez vous à la maison? Plusieurs choix possibles</label>
 					</p>
 					
 						<ul class="choix">
@@ -120,7 +178,7 @@
 							<div class="container">
 					<div class="current">Question 5/20</div>	
 					<p class="question">
-						 <label for="q5">5.Utlisez-vous un assistant sonore chez vous?(type Alexa, Cortana, Siri ou autre)</label>
+						 <label for="q5">	Utlisez-vous un assistant sonore chez vous?(type Alexa, Cortana, Siri ou autre)</label>
 					</p>
 					
 						<ul class="choix">
@@ -132,7 +190,7 @@
 							<div class="container">
 					<div class="current">Question 6/20</div>	
 					<p class="question">
-						 <label for="q6">6.Possédez vous des bloqueurs de publicité sur vos navigateurs?</label>
+						 <label for="q6">	Possédez vous des bloqueurs de publicité sur vos navigateurs?</label>
 					</p>
 					
 						<ul class="choix">
@@ -144,7 +202,7 @@
 							<div class="container">
 					<div class="current">Question 7/20</div>	
 					<p class="question">
-						 <label for="q7">7.Pensez vous que l'anonnymat est impossible à l'ère du numérique?</label>
+						 <label for="q7">	Pensez vous que l'anonnymat est impossible à l'ère du numérique?</label>
 					</p>
 					
 						<ul class="choix">
@@ -157,7 +215,7 @@
 							<div class="container">
 					<div class="current">Question 8/20</div>	
 					<p class="question">
-						 <label for="q8">8.Faites vous toutes les mises à jour de sécurité sur votre téléphone et votre PC?</label>
+						 <label for="q8">	Faites vous toutes les mises à jour de sécurité sur votre téléphone et votre PC?</label>
 					</p>
 					
 						<ul class="choix">
@@ -169,7 +227,7 @@
 							<div class="container">
 					<div class="current">Question 9/20</div>	
 					<p class="question">
-						 <label for="q9">9.Avez vous déjà été victime de piratage sur vos comptes connectés?</label>
+						 <label for="q9">	Avez vous déjà été victime de piratage sur vos comptes connectés?</label>
 					</p>
 					
 						<ul class="choix">
@@ -182,7 +240,7 @@
 							<div class="container">
 					<div class="current">Question 10/20</div>	
 					<p class="question">
-						 <label for="q10">10.Comment utilisez vous vos mots de passe?</label>
+						 <label for="q10">	Comment utilisez vous vos mots de passe?</label>
 					</p>
 					
 						<ul class="choix">
@@ -202,7 +260,7 @@
 							<div class="container">
 					<div class="current">Question 11/20</div>	
 					<p class="question">
-						 <label for="q11">11.Possédez vous des caméraras connectées chez vous ?</br></label>
+						 <label for="q11">	Possédez vous des caméraras connectées chez vous ?</br></label>
 					</p>
 					
 						<ul class="choix">
@@ -214,7 +272,7 @@
 							<div class="container">
 					<div class="current">Question 12/20</div>	
 					<p class="question">
-						 <label for="q12">12.Avez-vous masqué la webcam de vos ordinateurs ou pensez-vous à le faire ?</br></label>
+						 <label for="q12">	Avez-vous masqué la webcam de vos ordinateurs ou pensez-vous à le faire ?</br></label>
 					</p>
 					
 						<ul class="choix">
@@ -229,7 +287,7 @@
 							<div class="container">
 					<div class="current">Question 13/20</div>	
 					<p class="question">
-						 <label for="q13">13.Avez-vous déjà reconfigurés votre box ? (Changement de nom, mot de passe, cryptage, etc).</br></label>
+						 <label for="q13">	Avez-vous déjà reconfigurés votre box ? (Changement de nom, mot de passe, cryptage, etc).</br></label>
 					</p>
 					
 						<ul class="choix">
@@ -243,7 +301,7 @@
 							<div class="container">
 					<div class="current">Question 14/20</div>	
 					<p class="question">
-						 <label for="q14">14.Pensez-vous que votre antivirus sur votre PC est performant ?</br></label>
+						 <label for="q14">	Pensez-vous que votre antivirus sur votre PC est performant ?</br></label>
 					</p>
 					
 						<ul class="choix">
@@ -257,7 +315,7 @@
 							<div class="container">
 					<div class="current">Question 15/20</div>	
 					<p class="question">
-						 <label for="q15">15.Avez-vous pour habitude d'utiliser des pseudos quand vous créez un compte en ligne ou vous préférez utiliser votre nom ou prénom ?</br></label>
+						 <label for="q15">	Avez-vous pour habitude d'utiliser des pseudos quand vous créez un compte en ligne ou vous préférez utiliser votre nom ou prénom ?</br></label>
 					</p>
 					
 						<ul class="choix">
@@ -271,7 +329,7 @@
 							<div class="container">
 					<div class="current">Question 16/20</div>	
 					<p class="question">
-						 <label for="q16">16.Pensez- vous qu'il est possible de pirater une voiture connectée ?</br></label>
+						 <label for="q16">	Pensez- vous qu'il est possible de pirater une voiture connectée ?</br></label>
 					</p>
 					
 						<ul class="choix">
@@ -284,7 +342,7 @@
 							<div class="container">
 					<div class="current">Question 17/20</div>	
 					<p class="question">
-						 <label for="q17">17.Pensez-vous que vos données sont protégées dans une voiture connectée ?</br></label>
+						 <label for="q17">	Pensez-vous que vos données sont protégées dans une voiture connectée ?</br></label>
 					</p>
 					
 						<ul class="choix">
@@ -298,7 +356,7 @@
 							<div class="container">
 					<div class="current">Question 18/20</div>	
 					<p class="question">
-						 <label for="q18">18.Pensez-vous qu'une voiture connectée augmente le risque d'accident ?</br></label>
+						 <label for="q18">	Pensez-vous qu'une voiture connectée augmente le risque d'accident ?</br></label>
 					</p>
 					
 						<ul class="choix">
@@ -311,7 +369,7 @@
 							<div class="container">
 					<div class="current">Question 19/20</div>	
 					<p class="question">
-						 <label for="q19">19.A combien estimez-vous le nombre de voitures connectées en circulation en France en 2018 ?</br></label>
+						 <label for="q19">	A combien estimez-vous le nombre de voitures connectées en circulation en France en 2018 ?</br></label>
 					</p>
 					
 						<ul class="choix">
@@ -328,7 +386,7 @@
 							<div class="container">
 					<div class="current">Question 20/20</div>	
 					<p>
-						 <label for="q20">20.Possédez-vous une voiture connectée ?</br></label>
+						 <label for="q20"> Possédez-vous une voiture connectée ?</br></label>
 					</p>
 					
 						<ul>
@@ -336,14 +394,14 @@
 							<li><input name="q20" type="radio" value="2" >Non<li>
 							
 						</ul>
-					<input type="submit" value="Submit Answers"/>
+					<center><input class="g" type="submit" name="submit" value="submit"/></center>
 				</div>
 			</div>
 			</form>
 		</section>
 		<footer>
 			<div class="container">
-				Copyright &copy; 2019, QCM "Privacy"
+				Copyright &copy; 2019, Sondage "Privacy"
 			</div>	
 		</footer>
 	</body>
