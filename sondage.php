@@ -55,7 +55,7 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 $unix = time(); // temps actuel.
 $temps = time()-3600; // le temps y'as maintenant une heure.
 
-
+// évite les doubles votes
 $requete = $connexion->query('SELECT * FROM question WHERE ip = "'.$ip.'"') or die (mysqli_connect_error());
    $return = mysqli_fetch_array($requete);
     if($return['id'] > 0)
