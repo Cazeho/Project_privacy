@@ -189,7 +189,7 @@ if($q->num_rows > 0){
 		<a href="#" class="back-to-top">Back-to top</a>
 		<section>
 			<div class="box">
-			<form name="myform" method="post" id="" action="qcm.php" onsubmit="return validate()">
+			<form name="myform" method="post" id="" action="sondage.php" onsubmit="return validate()">
 				<div class="container">
 					<div class="current">Question 1/20</div>	
 					<p>
