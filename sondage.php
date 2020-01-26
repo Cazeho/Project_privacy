@@ -21,7 +21,9 @@ CREATE TABLE `question` (
   `q17` varchar(200) NOT NULL,
   `q18` varchar(200) NOT NULL,
   `q19` varchar(200) NOT NULL,
-  `q20` varchar(200) NOT NULL
+  `q20` varchar(200) NOT NULL,
+  `ip` varchar(200) NOT NULL,
+  `unix` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=ucs2;
 
 ALTER TABLE `question`
