@@ -1,19 +1,3 @@
-<?php session_start();
-require('data.php');
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'mr708660');
- 
-// Connexion à la base de données MySQL 
-$connexion = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
- 
-// Vérifier la connexion
-if($connexion === false){
-    die("ERREUR : Impossible de se connecter. " . mysqli_connect_error());
-}
-?>
-<!DOCTYPE HTML>
 <!-- Base de donnée
 
 CREATE TABLE `question` (
@@ -45,6 +29,61 @@ ALTER TABLE `question`
 
 
 --> 
+<?php
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'mr708660');
+ 
+// Connexion à la base de données MySQL 
+$connexion = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+ 
+// Vérifier la connexion
+if($connexion === false){
+    die("ERREUR : Impossible de se connecter. " . mysqli_connect_error());
+}
+if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+    $ip = $_SERVER['REMOTE_ADDR'];
+    }
+
+$unix = time(); // temps actuel.
+$temps = time()-3600; // le temps y'as maintenant une heure.
+
+
+$requete = $connexion->query('SELECT * FROM question WHERE ip = "'.$ip.'"') or die (mysqli_connect_error());
+   $return = mysqli_fetch_array($requete);
+    if($return['id'] > 0)
+    {
+        //A VOTER
+		$connexion->query('INSERT INTO question VALUES ("", "'.$ip.'")') or die (mysqli_connect_error());
+	echo $id;
+    }
+    else
+    {
+		
+    }
+
+// on demande a notre table de nous donné tous les ip qui ressemble a l'ip de
+// notre visiteur actuel, et qui ne sont pas
+// daté de plus d'une heure.
+ 
+$q = $connexion->query("SELECT ip FROM question WHERE ip='$ip' AND unix > '$temps'");
+
+if($q->num_rows > 0){
+// Si oui, ca veut dire que notre visiteur a déjà voté, on lui affiche alors
+// un
+// message de remerciements, et les résultats.
+  
+  echo 
+'<p style="font-size:20px;text-align:center;color:#660000"><strong>Merci' .
+' d\'avoir voté !</strong></p>';
+}
+?>
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -54,7 +93,7 @@ ALTER TABLE `question`
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link href="./css/bootstrap.min.css" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<link rel="stylesheet" href="../privacy/CSS/style.css" />
+		<link rel="stylesheet" href="../projet_tuto/CSS/style.css" />
 		<title>Sondage "Privacy"</title>
 		<script>
 			function validate(){
@@ -127,7 +166,7 @@ ALTER TABLE `question`
 				$q20 = $_POST['q20'];
 				
 				
-				$result = mysqli_query($connexion, "INSERT INTO question(id, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20 ) VALUES ('','" . $q1. "', '" . $q2. "','" . $q3. "','" . $q4. "','" . $q5. "','" . $q6. "','" . $q7. "','" . $q8. "','" . $q9. "','" . $q10. "','" . $q11. "','" . $q12. "','" . $q13. "','" . $q14. "','" . $q15. "','" . $q16. "','" . $q17. "','" . $q18. "','" . $q19. "','" . $q20. "')");
+				$result = mysqli_query($connexion, "INSERT INTO question(id, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16, q17, q18, q19, q20, ip, unix ) VALUES ('','" . $q1. "', '" . $q2. "','" . $q3. "','" . $q4. "','" . $q5. "','" . $q6. "','" . $q7. "','" . $q8. "','" . $q9. "','" . $q10. "','" . $q11. "','" . $q12. "','" . $q13. "','" . $q14. "','" . $q15. "','" . $q16. "','" . $q17. "','" . $q18. "','" . $q19. "','" . $q20. "','" . $ip. "','" . $unix. "')");
 				if($result){
 				  $db_msg = "Vos informations de contact sont enregistrées avec succés.";
 				  $type_db_msg = "success";
@@ -135,6 +174,7 @@ ALTER TABLE `question`
 				  $db_msg = "Erreur lors de la tentative d'enregistrement de contact.";
 				  $type_db_msg = "error";
 				}
+				echo 'Nom : ' . $q1 . ' Age : ' . $q2 . ' Adresse : ' . $q4;
 				
 			}			
 			?>
@@ -147,7 +187,7 @@ ALTER TABLE `question`
 		<a href="#" class="back-to-top">Back-to top</a>
 		<section>
 			<div class="box">
-			<form name="myform" method="post" id="" action="proc.php" onsubmit="return validate()">
+			<form name="myform" method="post" id="" action="qcm.php" onsubmit="return validate()">
 				<div class="container">
 					<div class="current">Question 1/20</div>	
 					<p>
